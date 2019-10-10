@@ -52,8 +52,10 @@ def checkout(cart, coupons)
   applied_coupons = apply_coupons(consol_cart, coupons)
     applied_discount = apply_clearance(applied_coupons)
  
- total = applied_discount.reduce(0) { |acc, (key, value)| acc += value[:price] * value[count]}
- total > 100 ? total * 0.9 : total
- 
+ total = 0.0
+  cart_with_discounts_applied.keys.each do |item|
+    total += cart_with_discounts_applied[item][:price]*cart_with_discounts_applied[item][:count]
+  end
+  total > 100.00 ? (total * 0.90).round : total
 
 end
