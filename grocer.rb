@@ -48,8 +48,8 @@ cart
 end
 
 def checkout(cart, coupons)
- h = consolidate_cart(cart)
-  applied_coupons = apply_coupons(hash_cart, coupons)
+ consol_cart = consolidate_cart(cart)
+  applied_coupons = apply_coupons(consol_cart, coupons)
     applied_discount = apply_clearance(applied_coupons)
  
  total = applied_discount.reduce(0) { |acc, (key, value)| acc += value[:price] * value[count]}
